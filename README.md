@@ -1,6 +1,26 @@
-getting started with machine learning in python...
+# Getting started with Machine Learning in Python
 
+Install anaconda from source: https://www.anaconda.com/download/#macos then restart terminal and check to see if it is installed:
 
 ```sh
-pip3 install keras tensorflow
+conda --version #> conda 4.5.11
+which conda #> /anaconda3/bin/conda
+```
+
+Create a new virtual environment, named something like `ml-env-1`, with the necessary python packages:
+
+```sh
+conda create -n ml-env-1 keras tensorflow
+```
+
+Enter the virtual environemnt:
+
+```sh
+conda activate ml-env-2  # ... to deactivate: conda deactivate
+
+which python #> /anaconda3/envs/ml-env-2/bin/python
+python --version #> Python 3.6.7 :: Anaconda, Inc.
+
+which pip #> /anaconda3/envs/ml-env-2/bin/pip
+pip --version #> pip 18.1 from /anaconda3/envs/ml-env-2/lib/python3.6/site-packages/pip (python 3.6)
 ```
