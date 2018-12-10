@@ -1,8 +1,10 @@
 # Credits, notes and reference
 
-## General
+## Python / General
 
   + https://www.dataweekends.com/blog/2017/03/09/set-up-your-mac-for-deep-learning-with-python-keras-and-tensorflow
+  + https://github.com/prof-rossetti/nyu-info-2335-201805/blob/master/notes/programming-languages/python/modules/pdb.md
+  + https://github.com/prof-rossetti/nyu-info-2335-201805/blob/master/notes/programming-languages/python/datatypes/strings.md
 
 ## Anaconda
 
