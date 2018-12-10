@@ -1,6 +1,6 @@
 # Getting started with Machine Learning in Python
 
-## Configuring Local Environment
+## Configuring Local Dev Environment
 
 Install anaconda from source: https://www.anaconda.com/download/#macos then restart terminal and check to see if it is installed:
 
