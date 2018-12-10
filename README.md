@@ -12,7 +12,8 @@ which conda #> /anaconda3/bin/conda
 Create a new virtual environment, named something like `ml-env-1`, with the necessary python packages:
 
 ```sh
-conda create -n ml-env-1 # installing packages here seems to not work, see https://github.com/keras-team/keras/issues/4889
+conda create -n ml-env-1 python=3.6 # installing packages here seems to not work, also version 3.7 not yet supported by tensorflow, so use python 3.6
+conda env list #> you should see your new environment included
 ```
 
 Enter the virtual environemnt:
@@ -30,7 +31,15 @@ pip --version #> pip 18.1 from /anaconda3/envs/ml-env-2/lib/python3.6/site-packa
 Install package dependencies inside the virtual environment:
 
 ```sh
-pip install keras
-pip install tensorflow
+pip install keras tensorflow
+
+pip list #> should see both, with supporting packages
 ```
 
+
+
+## Creating a Model
+
+```sh
+python my_model.py
+```

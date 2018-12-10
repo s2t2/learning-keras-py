@@ -12,6 +12,7 @@
 
 ## Keras
 
+  + https://github.com/keras-team/keras
   + https://keras.io/backend/
   + https://keras.io/#configuring-your-keras-backend
   + https://github.com/keras-team/keras/issues/4889
