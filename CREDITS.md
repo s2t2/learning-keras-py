@@ -36,3 +36,10 @@
   + https://topicfly.io/classify-mnist-digits-keras/
   + https://medium.com/@cafielo/build-a-handwritten-digit-recognition-model-with-keras-b8733274574c
   + https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
+
+## Numpy / Scipy
+
+N-dimensional Data arrays:
+
+  + https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.ndarray.html
+  + https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html
