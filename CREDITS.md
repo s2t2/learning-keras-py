@@ -29,6 +29,7 @@
   
 ### MNIST Handwritten Digits
 
+  + https://keras.io/datasets/#mnist-database-of-handwritten-digits
   + https://nextjournal.com/gkoehler/digit-recognition-with-keras
   + https://topicfly.io/classify-mnist-digits-keras/
   + https://medium.com/@cafielo/build-a-handwritten-digit-recognition-model-with-keras-b8733274574c
