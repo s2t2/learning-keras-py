@@ -19,7 +19,7 @@
   + https://keras.io/#configuring-your-keras-backend
   + https://github.com/keras-team/keras/issues/4889
   + https://transcranial.github.io/keras-js/#/
- 
+
 ## Tensorflow
 
   + https://www.tensorflow.org/install/source -- can run on local mac laptop without crashing? let's see how resource intensive this is...
@@ -28,7 +28,7 @@
 ## Datasets
 
   + https://keras.io/datasets/
-  
+
 ### MNIST Handwritten Digits
 
   + https://keras.io/datasets/#mnist-database-of-handwritten-digits
@@ -43,3 +43,8 @@ N-dimensional Data arrays:
 
   + https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.ndarray.html
   + https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html
+
+## Matplotlib
+
+  + https://stackoverflow.com/questions/21784641/installation-issue-with-matplotlib-python#comment56913201_21789908
+  + https://stackoverflow.com/a/35085705/670433
