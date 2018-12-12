@@ -1,8 +1,11 @@
 # Credits, notes and reference
 
-## Python / General
+## Tutorials
 
   + https://www.dataweekends.com/blog/2017/03/09/set-up-your-mac-for-deep-learning-with-python-keras-and-tensorflow
+  + Neural Networks and Convolutional Neural Networks Essential Training (lynda.com)
+
+## Python
   + https://github.com/prof-rossetti/nyu-info-2335-201805/blob/master/notes/programming-languages/python/modules/pdb.md
   + https://github.com/prof-rossetti/nyu-info-2335-201805/blob/master/notes/programming-languages/python/datatypes/strings.md
 
