@@ -52,3 +52,7 @@ N-dimensional Data arrays:
 
   + https://stackoverflow.com/questions/21784641/installation-issue-with-matplotlib-python#comment56913201_21789908
   + https://stackoverflow.com/a/35085705/670433
+
+## Azure Notebooks
+
+  + https://learningkerasnn-profrossetti.notebooks.azure.com/j/notebooks/my_model.ipynb
