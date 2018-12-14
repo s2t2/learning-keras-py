@@ -22,6 +22,7 @@
   + https://keras.io/#configuring-your-keras-backend
   + https://github.com/keras-team/keras/issues/4889
   + https://transcranial.github.io/keras-js/#/
+  + https://github.com/keras-team/keras/issues/3109
 
 ## Tensorflow
 

@@ -1,13 +1,8 @@
-# https://github.com/s2t2/learning-keras-py/blob/master/my_model.py
-
 import pdb
 import os
 
-from keras.datasets import mnist  #> "Importing Tensorflow Backend"
-from keras.preprocessing.image import load_img, array_to_img
-from keras.utils.np_utils import to_categorical
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.datasets import mnist #> "Importing Tensorflow Backend"
 
 import matplotlib
 matplotlib.use('TkAgg') # bypasses ImportError: Python is not installed as a framework....
@@ -55,43 +50,52 @@ def main():
     print("--------------------")
 
     model = Sequential()
-    model.add( Dense(512, activation="relu", input_shape=(784,)) ) # 784 pixel flattened image
-    model.add( Dense(512, activation="relu") )
-    model.add( Dense(10, activation="softmax") ) # softmax for classification (digits 0-9)
-    model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"]) # categorical_crossentropy (b/c output into 10 categories), other: binary_crossentropy, mse
-    model.summary()
+    print(type(model)) #> <class 'keras.engine.sequential.Sequential'>
+
+    #model.add(Dense(3, input_dim=2, activation="relu"))
+    #model.add(Dense(3, activation="relu"))
+    #model.add(Dense(1)) # activation="softmax" for classification
+    #model.compile(optimizer="adam", loss="mse") # categorical_crossentropy or binary_crossentropy
+
+    # CNN
+    model.add( Conv2D(32, kernel_size=(5,5), input_shape=(28,28,1), padding="same", activation="relu") ) # INPUT LAYER
+    model.add( MaxPooling2D() )
+    model.add( Conv2D(64, kernel_size=(5,5), padding="same", activation="relu") )
+    model.add( MaxPooling2D() )
+    model.add( Flatten() )
+    model.add( Dense(1024, activation="relu") )
+    model.add( Dense(10, activation="softmax") ) # OUTPUT LAYER softmax for categorical
+    model.compile()
+    print(model.summary())
 
     #
     # TRAIN MODEL
     # ... takes 20 mins per epoch (or skip to loading the weights :-D)
 
-    print("--------------------")
-    print("TRAINING MODEL...")
-    print("--------------------")
-    history = model.fit(x_train, y_train, epochs=20, verbose=1, validation_data=(x_test, y_test) )
-    print(type(history))
+    # history_model = model.fit(x_train, y_train, epochs=5, verbose=1, validation_data=(x_train, y_train) )
+    # plt.plot(histor_model.history_model["acc"])
+    # plt.plot(histor_model.history_model["val_acc"])
 
-    #
-    # EVALUATE MODEL
-    #
+    # LOAD WEIGHTS
 
-    print("--------------------")
-    print("EVALUATING MODEL...")
-    print("--------------------")
-
-    #if PLOTTING==True:
-    #    plt.plot(history.history["acc"])
-    #    plt.plot(history.history["val_acc"])
-    #    plt.plot(history.history["loss"])
-
-    score = model.evaluate(x_test, y_test)
-    print(score)
+    model.load_weights("weights/cnn-model5.h5")
 
     #
     # PREDICT
     #
 
-    # todo
+    score = model.evaluate(x_test, y_test)
+    print(score)
+
+
+
+
+
+
+
+
+
+
 
 def verbose_inspect(subset_label, subset):
     print(f"{subset_label}: {type(subset)} of {subset.dtype} with shape {subset.shape}")
