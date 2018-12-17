@@ -40,6 +40,7 @@
   + https://topicfly.io/classify-mnist-digits-keras/
   + https://medium.com/@cafielo/build-a-handwritten-digit-recognition-model-with-keras-b8733274574c
   + https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
+  + https://towardsdatascience.com/basics-of-image-classification-with-keras-43779a299c8b
 
 ## Numpy / Scipy
 

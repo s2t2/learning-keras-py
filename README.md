@@ -12,26 +12,26 @@ which conda #> /anaconda3/bin/conda
 Create a new virtual environment, named something like `ml-env-1`, with the necessary python packages:
 
 ```sh
-conda create -n ml-env-1 python=3.6 # installing packages here seems to not work, also version 3.7 not yet supported by tensorflow, so use python 3.6
+conda create -n mjr-ml4 python=3.6 # installing packages here seems to not work, also version 3.7 not yet supported by tensorflow, so use python 3.6
 conda env list #> you should see your new environment included
 ```
 
 Enter the virtual environemnt:
 
 ```sh
-conda activate ml-env-2  # ... to deactivate: conda deactivate
+conda activate mjr-ml4  # ... to deactivate: conda deactivate
 
-which python #> /anaconda3/envs/ml-env-2/bin/python
+which python #> /anaconda3/envs/mjr-ml4/bin/python
 python --version #> Python 3.6.7 :: Anaconda, Inc.
 
-which pip #> /anaconda3/envs/ml-env-2/bin/pip
-pip --version #> pip 18.1 from /anaconda3/envs/ml-env-2/lib/python3.6/site-packages/pip (python 3.6)
+which pip #> /anaconda3/envs/mjr-ml4/bin/pip
+pip --version #> pip 18.1 from /anaconda3/envs/mjr-ml4/lib/python3.6/site-packages/pip (python 3.6)
 ```
 
 Install package dependencies inside the virtual environment:
 
 ```sh
-pip install keras tensorflow
+pip install keras tensorflow matplotlib
 
 pip list #> should see both, with supporting packages
 ```

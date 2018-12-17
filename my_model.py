@@ -1,8 +1,6 @@
-# https://github.com/s2t2/learning-keras-py/blob/master/my_model.py
-# https://learningkerasnn-profrossetti.notebooks.azure.com/j/notebooks/my_model.ipynb
-
 import pdb
 import os
+#import datetime
 
 from keras.datasets import mnist  #> "Importing Tensorflow Backend"
 from keras.preprocessing.image import load_img, array_to_img
@@ -16,7 +14,8 @@ import matplotlib.pyplot as plt
 # view plots in jupyter notebook:
 # %matplotlib inline
 
-PLOTTING = (os.environ.get("PLOTTING") == "true") or False
+PLOTTING = True # (os.environ.get("PLOTTING") == "true") or False
+FILEPATH = "my-model-saved.h5"
 
 def main():
     print("--------------------")
@@ -24,12 +23,9 @@ def main():
     print("--------------------")
 
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
     verbose_inspect("X (Train)", x_train)
     verbose_inspect("X (Test)", x_test)
-    print("---")
-    verbose_inspect("Y (Train)", y_train)
-    verbose_inspect("Y (Test)", y_test)
-
     if PLOTTING == True:
         imageset = x_train
         plt.subplot(141)
@@ -41,6 +37,10 @@ def main():
         plt.subplot(144)
         plt.imshow(imageset[3], cmap=plt.get_cmap('gray'))
         plt.show()
+
+    verbose_inspect("Y (Train)", y_train)
+    verbose_inspect("Y (Test)", y_test)
+    print(y_train[0:4])
 
     print("--------------------")
     print("PREPARING/PREPROCESSING DATA...")
@@ -60,6 +60,8 @@ def main():
     x_test = x_test.astype("float32")
     x_train = x_train / 255.0
     x_test = x_test / 255.0
+    verbose_inspect("X (Train)", x_train)
+    verbose_inspect("X (Test)", x_test)
     #print(x_train[0])
 
     # need output of our model to go into one of ten bins (digits 0-9)
@@ -79,25 +81,63 @@ def main():
     model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"]) # categorical_crossentropy (b/c output into 10 categories), other: binary_crossentropy, mse
     model.summary()
 
-    print("--------------------")
-    print("TRAINING MODEL...")
-    print("--------------------")
-    history = model.fit(x_train, y_train, epochs=20, verbose=1, validation_data=(x_test, y_test) )
-    print(type(history))
+    #print("--------------------")
+    #print("TRAINING MODEL...")
+    #print("--------------------")
+    #history = model.fit(x_train, y_train, epochs=3, verbose=1, validation_data=(x_test, y_test) ) # 18s / epoch
+    ##print(type(history))
+#
+    #print("--------------------")
+    #print("EVALUATING MODEL...")
+    #print("--------------------")
+#
+    #if PLOTTING==True:
+    #    plt.plot(history.history["acc"])
+    #    plt.plot(history.history["val_acc"])
+    #    #plt.plot(history.history["loss"])
+#
+    #score = model.evaluate(x_test, y_test)
+    #print(score)
+#
+    #print("--------------------")
+    #print("SAVING MODEL...")
+    #print("--------------------")
+#
+    ##ts = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+    ##model.save(f"saved-model-{ts}.h5")
+#
+    #filepath = "my-model-saved.h5"
+    #if not os.path.isfile(filepath): model.save(filepath) # todo: maybe load the model later instead of recreating from scratch
 
     print("--------------------")
-    print("EVALUATING MODEL...")
+    print("LOADING WEIGHTS FROM PREVIOUS TRAINING...")
     print("--------------------")
 
-    if PLOTTING==True:
-        plt.plot(history.history["acc"])
-        plt.plot(history.history["val_acc"])
-        plt.plot(history.history["loss"])
+    model.load_weights(FILEPATH)
 
-    score = model.evaluate(x_test, y_test)
-    print(score)
+    print("--------------------")
+    print("MAKING PREDICTIONS...")
+    print("--------------------")
 
-    # PREDICTIONS: TODO
+    # classes = model.predict(x_test, batch_size=128)
+
+    # h/t: https://towardsdatascience.com/basics-of-image-classification-with-keras-43779a299c8b
+    i = 130
+    img = x_test[i]
+
+    pdb.set_trace()
+
+    if PLOTTING == True:
+        display_img = img.reshape((28,28))
+        plt.imshow(display_img, cmap="gray")
+        plt.title("Example Test Image")
+        plt.show()
+
+    test_img = img.reshape((1,784)) #> <class 'numpy.ndarray'> (1, 784)
+
+    prediction = model.predict_classes(test_img) #> <class 'numpy.ndarray'> (1,)
+    predicted_value = prediction[0]
+    print("Predicted Value:", predicted_value)
 
     print("--------------------")
     print("HAVE A NICE DAY!")
