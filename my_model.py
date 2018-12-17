@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 # view plots in jupyter notebook:
 # %matplotlib inline
 
-PLOTTING = True # (os.environ.get("PLOTTING") == "true") or False
+PLOTTING = (os.environ.get("PLOTTING") == "true") or False
 FILEPATH = "my-model-saved.h5"
 
 def main():
@@ -81,51 +81,48 @@ def main():
     model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"]) # categorical_crossentropy (b/c output into 10 categories), other: binary_crossentropy, mse
     model.summary()
 
-    #print("--------------------")
-    #print("TRAINING MODEL...")
-    #print("--------------------")
-    #history = model.fit(x_train, y_train, epochs=3, verbose=1, validation_data=(x_test, y_test) ) # 18s / epoch
-    ##print(type(history))
-#
-    #print("--------------------")
-    #print("EVALUATING MODEL...")
-    #print("--------------------")
-#
-    #if PLOTTING==True:
-    #    plt.plot(history.history["acc"])
-    #    plt.plot(history.history["val_acc"])
-    #    #plt.plot(history.history["loss"])
-#
-    #score = model.evaluate(x_test, y_test)
-    #print(score)
-#
-    #print("--------------------")
-    #print("SAVING MODEL...")
-    #print("--------------------")
-#
-    ##ts = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
-    ##model.save(f"saved-model-{ts}.h5")
-#
-    #filepath = "my-model-saved.h5"
-    #if not os.path.isfile(filepath): model.save(filepath) # todo: maybe load the model later instead of recreating from scratch
+    if os.path.isfile(FILEPATH):
+        print("--------------------")
+        print("LOADING WEIGHTS FROM PREVIOUS TRAINING...")
+        print("--------------------")
 
-    print("--------------------")
-    print("LOADING WEIGHTS FROM PREVIOUS TRAINING...")
-    print("--------------------")
+        model.load_weights(FILEPATH)
+    else:
+        print("--------------------")
+        print("TRAINING MODEL...")
+        print("--------------------")
 
-    model.load_weights(FILEPATH)
+        history = model.fit(x_train, y_train, epochs=3, verbose=1, validation_data=(x_test, y_test) ) # 18s / epoch
+        #print(type(history))
+
+        print("--------------------")
+        print("EVALUATING MODEL...")
+        print("--------------------")
+
+        if PLOTTING==True:
+            plt.plot(history.history["acc"])
+            plt.plot(history.history["val_acc"])
+            #plt.plot(history.history["loss"])
+
+        score = model.evaluate(x_test, y_test)
+        print(score)
+
+        print("--------------------")
+        print("SAVING MODEL...")
+        print("--------------------")
+
+        try:
+            model.save(FILEPATH) # todo: maybe load the model later instead of recreating from scratch
+        except Exception as e:
+            print("OOPS ERROR SAVING MODEL")
 
     print("--------------------")
     print("MAKING PREDICTIONS...")
     print("--------------------")
 
-    # classes = model.predict(x_test, batch_size=128)
-
     # h/t: https://towardsdatascience.com/basics-of-image-classification-with-keras-43779a299c8b
     i = 130
-    img = x_test[i]
-
-    pdb.set_trace()
+    img = x_test[i] #> (784,)
 
     if PLOTTING == True:
         display_img = img.reshape((28,28))
@@ -134,10 +131,11 @@ def main():
         plt.show()
 
     test_img = img.reshape((1,784)) #> <class 'numpy.ndarray'> (1, 784)
-
     prediction = model.predict_classes(test_img) #> <class 'numpy.ndarray'> (1,)
     predicted_value = prediction[0]
     print("Predicted Value:", predicted_value)
+
+    # model.predict(x_test, batch_size=128) #> (1, 10)
 
     print("--------------------")
     print("HAVE A NICE DAY!")
